@@ -6,56 +6,383 @@
 
 /************************************* COMMON COMPONENT VARIABLES AND PROPERTIES *************************************/
 var _library = 'common';
-/*
-prx.commonproperties.backgroundColorActive = { caption: 'Active', name: 'backgroundColorActive', proptype: 'background-color-2-active', type: 'colorpicker', value: function(item,name) { return item.backgroundColorActive; }, liveUpdate: 'background-color', changeProperty: {caption: 'Active Background color', selector: '.changeProperty-backgroundColorActive', property: 'background-color', transitionable: true } }
-
-prx.commonproperties.borderColorActive = { caption: 'Active', name: 'borderColorActive', proptype: 'border-color-2-active', type: 'colorpicker', value: function(item,name) { return item.borderColorActive; }, liveUpdate: 'border-color', changeProperty: { caption: 'Active Border color', selector: '.changeProperty-borderColorActive', property: 'border-top-color,border-bottom-color,border-left-color,border-right-color', transitionable: true } } // firefox issue http://greensock.com/forums/topic/8373-timeline-not-detecting-initial-bordercolor/
-
-prx.commonproperties.textSubtitle = { caption: 'Subtitle', name: 'subtitle', proptype: 'text-2-subtitle', type: 'input', value: function(item,name) { return item.subtitle; }, changeProperty: { caption: 'Subtitle', selector: '.changeProperty-subtitle', property: 'text', transitionable: false } }
-
-prx.commonproperties.textFontSubtitle = { caption: false, name: 'subtitleFont', proptype: 'font-family-2-subtitle', type: 'select', value: function(item,name) { return item.subtitleFont; }, values: function(){ return prx.comps.fonts }, changeProperty: { caption: 'Subtitle font', selector: '.changeProperty-subtitleFont', property: 'font-family', transitionable: false } }
-
-prx.commonproperties.textSizeActive = { caption: false, name: 'textSizeActive', proptype: 'font-size-2-active', type: 'combo-select', value: function(item,name) { return item.textSizeActive; }, values: prx.comps.textsize, changeProperty: { caption: 'Active Text size', selector: '.changeProperty-textSizeActive', property: 'font-size', transitionable: true } }
-prx.commonproperties.textSizeSubtitle = { caption: false, name: 'subtitleSize', proptype: 'font-size-3-subtitle', type: 'combo-select', value: function(item,name) { return item.subtitleSize; }, values: prx.comps.textsize, changeProperty: { caption: 'Subtitle size', selector: '.changeProperty-subtitleSize', property: 'font-size', transitionable: true } }
-
-prx.commonproperties.textColorActive = { caption: 'Active', name: 'textColorActive', proptype: 'font-color-2-active', type: 'colorpicker', value: function(item,name) { return item.textColorActive; }, liveUpdate: 'color', changeProperty: { caption: 'Active Text color', selector: '.changeProperty-textColorActive', property: 'color', transitionable: true } }
-prx.commonproperties.textColorSubtitle = { caption: false, name: 'subtitleColor', proptype: 'font-color-3-subtitle', type: 'colorpicker', value: function(item,name) { return item.subtitleColor; }, liveUpdate: 'color', changeProperty: { caption: 'Subtitle color', selector: '.changeProperty-subtitleColor', property: 'color', transitionable: true } }
-
-prx.commonproperties.textPropertiesSubtitle = { caption: false, name: 'subtitleProperties', proptype: 'text-properties-2-subtitle', type: 'checkbox', value: function(item,name) { if(typeof(item.subtitleProperties) == "undefined") {item.subtitleProperties = [];} return item.subtitleProperties; }, values: [{ value: 'bold', displayValue: '<span class="property-icon property-text-bold" title="Bold"></span>'}, { value: 'italic', displayValue: '<span class="property-icon property-text-italic" title="Italic"></span>'}, { value: 'underline', displayValue: '<span class="property-icon property-text-underline" title="Underline"></span>'}], changeProperty: { caption: 'Subtitle Text properties', rerender: true } }
-
-prx.commonproperties.textAlignSubtitle = { caption: false, name: 'subtitleAlign', proptype: 'text-align-2-subtitle', type: 'radio', value: function(item,name) { return item.subtitleAlign; }, values: [{ value: 'left', displayValue: '<span class="property-icon property-align-left" title="Align left"></span>'}, { value: 'center', displayValue: '<span class="property-icon property-align-center" title="Align center"></span>'}, { value: 'right', displayValue: '<span class="property-icon property-align-right" title="Align right"></span>'}], changeProperty: { caption: 'Subtitle Text align', selector: '.changeProperty-subtitleAlign', property: 'text-align', transitionable: false } }
-
-prx.commonproperties.labelInput = { caption: false, name: 'label', type: 'input', value: function(item,name) { return item.label; } ,changeProperty: { caption: 'Label text', rerender: true } }
-prx.commonproperties.textSizeLabel = { caption: false, name: 'labelSize', proptype: 'font-size-4-label', type: 'combo-select', value: function(item,name) { return item.labelSize; }, values: prx.comps.textsize, changeProperty: { caption: 'Label size', selector: '.changeProperty-labelSize', property: 'font-size', transitionable: true } };
-prx.commonproperties.textColorLabel = { caption: false, name: 'labelColor', proptype: 'font-color-4-label', type: 'colorpicker', value: function(item,name) { return item.labelColor; }, liveUpdate: 'color', changeProperty: { caption: 'Label color', selector: '.changeProperty-labelColor', property: 'color', transitionable: true } }
-prx.commonproperties.textPropertiesLabel = { caption: false, name: 'labelProperties', proptype: 'text-properties-3-label', type: 'checkbox', value: function(item,name) { if(typeof(item.labelProperties) == "undefined") {item.labelProperties = [];} return item.labelProperties; }, values: [{ value: 'bold', displayValue: '<span class="property-icon property-text-bold" title="Bold"></span>'}, { value: 'italic', displayValue: '<span class="property-icon property-text-italic" title="Italic"></span>'}, { value: 'underline', displayValue: '<span class="property-icon property-text-underline" title="Underline"></span>'}], changeProperty: { caption: 'Label Text properties', rerender: true } }
-prx.commonproperties.textAlignLabel = { caption: false, name: 'labelAlign', proptype: 'text-properties-3-label', type: 'radio', value: function(item,name) { return item.labelAlign; }, values: [{ value: 'left', displayValue: '<span class="property-icon property-align-left" title="Align left"></span>'}, { value: 'center', displayValue: '<span class="property-icon property-align-center" title="Align center"></span>'}, { value: 'right', displayValue: '<span class="property-icon property-align-right" title="Align right"></span>'}], changeProperty: { caption: 'Label Text align', selector: '.changeProperty-labelAlign', property: 'text-align', transitionable: false } }
-
-prx.commonproperties.iconSize = { caption: 'Size', name: 'iconSize', proptype: 'icon-size', type: 'select', value: function(item,name) { return item.iconSize;}, values: [{ value: '1', displayValue: 'Very small'}, { value: '2', displayValue: 'Small'}, { value: '3', displayValue: 'Normal'}, { value: '4', displayValue: 'Large'}, { value: '5', displayValue: 'Full'}], changeProperty: { caption: 'Icon size', rerender: true, changeable: false } }
-prx.commonproperties.thumbSize = { caption: 'Size', name: 'thumbSize', proptype: 'thumb-size', type: 'select', value: function(item,name) { return item.thumbSize;}, values: [{ value: '1', displayValue: 'Very small'}, { value: '2', displayValue: 'Small'}, { value: '3', displayValue: 'Normal'}, { value: '4', displayValue: 'Large'}, { value: '5', displayValue: 'Full'}], changeProperty: { caption: 'Thumbnail size', rerender: true, changeable: false } }
-
-prx.commonproperties.iconActiveMask = { caption: 'Active', name: 'iconColorActive', proptype: 'icon-color-active', type: 'colorpicker', value: function(item,name) { return item.iconColorActive; }, liveUpdate: 'background-color', changeProperty: { caption: 'Active icon color', rerender: true } }
-
-prx.commonproperties.iconSource = { caption: false, name: 'imgSrc', proptype: 'icon-source', type: 'combo-asset', displayValue: function(item,name) { if(item.imgSrc.url == '') { return 'No asset selected.'; } return item.imgSrc.name; } ,value: function(item,name) { return $.toJSON({ allow: 'image', asset: item.imgSrc }); } ,changeProperty: { caption: 'Icon', rerender: true } }
-prx.commonproperties.iconSourceSecondary = { caption: false, name: 'imgSrc2', proptype: 'icon-source-2-secondary', type: 'combo-asset', displayValue: function(item,name) { if(item.imgSrc2.url == '') { return 'No asset selected.'; } return item.imgSrc2.name; } ,value: function(item,name) { return $.toJSON({ allow: 'image', asset: item.imgSrc2 }); } ,changeProperty: { caption: 'Secondary Icon', rerender: true } }
-prx.commonproperties.iconSourceTabs = { caption: false, name: 'imgSrc', proptype: 'icon-source', type: 'combo-asset' ,displayValue: function(item,name,index) { if(item.tabs[index].imgSrc.url == '') { return 'No icon selected'; } return item.tabs[index].imgSrc.name; } ,value: function(item,name,index) { return $.toJSON({ allow: 'image', asset: item.tabs[index].imgSrc }); } ,changeProperty: { caption: 'Icon', rerender: true } }
-prx.commonproperties.iconSourceSecondaryTabs = { caption: false, name: 'imgSrc2', proptype: 'icon-source-2-secondary', type: 'combo-asset', displayValue: function(item,name) { if(item.tabs[index].imgSrc2.url == '') { return 'No asset selected.'; } return item.tabs[index].imgSrc2.name; } ,value: function(item,name) { return $.toJSON({ allow: 'image', asset: item.tabs[index].imgSrc2 }); } ,changeProperty: { caption: 'Secondary Icon', rerender: true } }
-prx.commonproperties.iconSourceList = { caption: false, name: 'imgSrc', proptype: 'icon-source', type: 'combo-asset', displayValue: function(item,name,index) { if(item.listitems[index].imgSrc.url == '') { return 'No icon selected'; } return item.listitems[index].imgSrc.name; }, value: function(item,name,index) { return $.toJSON({ allow: 'image', asset: item.listitems[index].imgSrc }); }, changeProperty: { caption: 'Icon', rerender: true } }
-prx.commonproperties.iconSourceSecondaryList = { caption: false, name: 'imgSrc2', proptype: 'icon-source-2-secondary', type: 'combo-asset', displayValue: function(item,name) { if(item.listitems[index].imgSrc2.url == '') { return 'No asset selected.'; } return item.listitems[index].imgSrc2.name; } ,value: function(item,name) { return $.toJSON({ allow: 'image', asset: item.listitems[index].imgSrc2 }); } ,changeProperty: { caption: 'Secondary Icon', rerender: true } }
-
-prx.commonproperties.thumbnailSource = { caption: false, name: 'thumbnail', proptype: 'thumbnail-source', type: 'combo-asset', displayValue: function(item,name,index) { if(typeof(item.thumbnail) == 'undefined' || item.thumbnail.url == '') { return 'No thumbnail selected'; } return item.thumbnail.name; }, value: function(item,name,index) { return $.toJSON({ allow: 'image', asset: item.thumbnail }); }, changeProperty: { caption: 'Thumbnail', rerender: true } }
-prx.commonproperties.thumbnailSourceList = { caption: false, name: 'thumbnail', proptype: 'thumbnail-source-list', type: 'combo-asset', displayValue: function(item,name,index) { if(typeof(item.listitems[index].thumbnail) == 'undefined' || item.listitems[index].thumbnail.url == '') { return 'No thumbnail selected'; } return item.listitems[index].thumbnail.name; }, value: function(item,name,index) { return $.toJSON({ allow: 'image', asset: item.listitems[index].thumbnail }); }, changeProperty: { caption: 'Thumbnail', rerender: true } }
-
-prx.commonproperties.shadowColor = { caption: 'Shadow', name: 'shadowColor', proptype: 'shadow-color', type: 'colorpicker', value: function(item,name) { return item.shadowColor; }, changeProperty: { caption: 'Shadow', rerender: true, changeable: false} }
-
-prx.commonproperties.borderWidth = { caption: 'Border', name: 'borderWidth', proptype: 'border-width', type: 'combo-select', value: function(item,name) { return item.borderWidth; }, values: { min: 1, max: 5, step: 1 } ,changeProperty: { caption: 'Border width', selector:'.changeProperty-borderWidth', property:'border-width', transitionable: true } }
-prx.commonproperties.borderStyle = { caption: false, name: 'borderStyle', proptype: 'border-style', type: 'select', value: function(item,name) { if(typeof(item.borderStyle) == "undefined") { item.borderStyle = "solid"; } return item.borderStyle; }, values: [{ value: "solid", displayValue: "Solid"},{ value: "dotted", displayValue: "Dotted"},{ value: "dashed", displayValue: "Dashed"},{ value: "double", displayValue: "Double"},{ value: "none", displayValue: "None"}], changeProperty: { caption: 'Border Style', selector: '.changeProperty-borderStyle', property: 'border-style', transitionable: false } }
-
-prx.commonproperties.placeholderInput = { caption: false, name: 'placeholder', proptype: 'placeholder-input', type: 'input', value: function(item,name) { return item.placeholder;}, changeProperty: { caption: 'Placeholder text', rerender: true } }
-prx.commonproperties.placeholderColor = { caption: 'Placeholder Color', name: 'placeholderColor', proptype: 'placeholder-color', type: 'colorpicker', value: function(item,name) { if(typeof(item.placeholderColor)=='undefined') { return '999999'; } return item.placeholderColor; }, liveUpdate: 'color', changeProperty: { caption: 'Placeholder color', selector: '.changeProperty-placeholderColor', property: 'color', transitionable: true } }
-*/
 
 /************************************* COMPONENT TYPES *************************************/
+
+//TYPE: SHAPES
+prx.types.shapes = {
+	name: "shapes"
+	,onDisplay: function(item,containerid) {
+		
+		var _id = (!containerid) ? item.id : containerid+'-'+item.id;
+		var dims = prx.componentsHelper.getRealDims(item);
+
+		var _props = (jQuery.inArray("bold",item.textProperties)>-1) ? " font-weight: bold;" : "";
+		_props += (jQuery.inArray("italic",item.textProperties)>-1) ? " font-style: italic;" : "";
+		_props += (jQuery.inArray("underline",item.textProperties)>-1) ? " text-decoration: underline;" : "";
+
+		var cR = '<div id="' + _id + '" class="box pos type-shapes '+item.typeName+'">';
+		
+		cR += '<style>';
+		cR += '#'+_id+' .shapes-text-container { width: '+dims.width+'px; '+_props+' '+prx.componentsHelper.getFontCssFromFontFamily(item.textFont)+'; font-size: '+item.textSize+'px; text-align: '+item.textAlign+'; color: '+prx.utils.getColor(item.textColor)+'; }';
+		cR += '</style>';
+				
+		cR += '<div id="'+item.typeName+'-' + _id + '" class="shape-wrapper ">';
+		cR += '<canvas id="canvas-'+ _id +'" width="'+dims.width+'" height="'+dims.height+'" class="shape-inner liveUpdate-backgroundColor liveUpdate-borderColor changeProperty-backgroundColor changeProperty-borderColor changeProperty-borderRadius changeProperty-borderWidth changeProperty-borderStyle"></canvas>';
+		cR += '<div class="shapes-text-container liveUpdate-textColor">';
+		cR += '<span data-editableproperty="text">' + item.text + '</span>';
+		cR += '</div>';
+		cR += '</div>';
+		cR += '</div>';
+		return cR;
+	}
+	,onResize: function(item,containerid) {
+
+		var _id = (!containerid) ? item.id : containerid+'-'+item.id;
+		var dims = prx.componentsHelper.getRealDims(item);
+		
+		$('#'+_id).find('.shapes-text-container').css({
+			'width': dims.width + 'px'
+		});
+		
+		$('#'+_id).find('#canvas-'+ _id).remove();
+		$('#'+_id).find('#'+item.typeName+'-'+ _id).html(
+			'<canvas id="canvas-'+ _id +'" width="'+dims.width+'" height="'+dims.height+'" class="shape-inner liveUpdate-backgroundColor liveUpdate-borderColor changeProperty-backgroundColor changeProperty-borderColor changeProperty-borderRadius changeProperty-borderWidth changeProperty-borderStyle"></canvas></div>'
+		);
+		
+		if(item.typeName == 'polygon' || item.typeName == 'star' || item.typeName == 'oval') {
+			prx.componentsHelper.erase( 'canvas-'+ _id );
+			prx.componentsHelper.drawComplexShape( 'canvas-'+ _id, item, item.typeName);
+		}
+		else {
+			prx.componentsHelper.erase( 'canvas-'+ _id );
+			prx.componentsHelper.drawShape( 'canvas-'+ _id, item, item.typeName);
+		}	
+	}
+	,afterDisplay: function(item,containerid) {
+		
+		var _id = (!containerid) ? item.id : containerid+'-'+item.id;	
+		
+		if(item.typeName == 'polygon' || item.typeName == 'star' || item.typeName == 'oval') {
+			prx.componentsHelper.drawComplexShape( 'canvas-'+ _id, item, item.typeName, 1, 1);
+		}
+		else {
+			prx.componentsHelper.drawShape( 'canvas-'+ _id, item, item.typeName, 1, 1);
+		}		
+	}
+	,interactions: [
+		prx.commonproperties.actions
+	]
+	,editableProperties: [
+		{
+	    	caption: 'Text'
+	    	,name: 'text'
+	    	,type: 'textarea'
+	    	,value: function(item,name) {
+	    		if(typeof(item.text) == "undefined") { item.text = '' }
+	    		return item.text;
+	    	},
+      		changeProperty: {
+				caption: 'Text',
+				property: 'text',
+				selector: '.rectangle-text-container span',
+				transitionable: false
+  			}
+	    }
+	]
+	,propertyGroups: [
+		{
+			caption: 'Text',
+			properties: 
+			[
+				[
+					{
+						caption: false,
+						name: 'textFont',
+						proptype: 'font-family',
+						type: 'select',
+						value: function(item,name) {
+							if(typeof(item.textFont) == "undefined") { item.textFont = 'sans-serif,Helvetica Neue,Arial' }
+							return item.textFont;
+						},
+						values: function(){ return prx.comps.fonts }
+			      		,changeProperty: {
+							caption: ' Text font',
+							selector: '.liveUpdate-textColor',
+							property: 'font-family',
+							transitionable: false
+						 }
+			
+					},
+					{
+						caption: false,
+						name: 'textSize',
+						proptype: 'font-size',
+						type: 'combo-select',
+						value: function(item,name) {
+							if(typeof(item.textSize) == "undefined") { item.textSize = 16 }
+							return item.textSize;
+						},
+						values: prx.comps.textsize
+			      		,changeProperty: {
+							caption: ' Text size',
+							selector: '.liveUpdate-textColor',
+							property: 'font-size',
+							transitionable: false
+						 }
+					},
+			      	{
+			      		caption: false,
+			      		name: 'textColor',
+			      		proptype: 'font-color',
+			      		type: 'colorpicker',
+			      		value: function(item,name) {
+			      			if(typeof(item.textColor) == "undefined") { item.textColor = '#2E2E2E' }
+			      			return item.textColor;
+			      		},
+			      		liveUpdate: 'color'
+			      		,changeProperty: {
+							caption: ' Text color',
+							selector: '.liveUpdate-textColor',
+							property: 'color',
+							transitionable: true
+						 }
+			      	}
+		      	],
+				[
+					{
+						caption: false,
+						name: 'textProperties',
+						proptype: 'text-properties',
+						type: 'checkbox',
+						value: function(item,name) { if(typeof(item.textProperties) == "undefined") {item.textProperties = [];} return item.textProperties; },
+						values: [{ value: 'bold', displayValue: '<span class="property-icon property-text-bold" title="Bold"></span>'}, { value: 'italic', displayValue: '<span class="property-icon property-text-italic" title="Italic"></span>'}, { value: 'underline', displayValue: '<span class="property-icon property-text-underline" title="Underline"></span>'}],
+			      		changeProperty: {
+							caption: 'Text Properties',
+							rerender: true
+			  			}
+					},
+			  		{
+			  			caption: false,
+			  			name: 'textAlign',
+			  			proptype: 'text-align',
+			  			type: 'radio',
+			  			value: function(item,name) {
+			  				if(typeof(item.textAlign) == "undefined") { item.textAlign = 'center' }
+			  				return item.textAlign;
+			  			},
+			  			values: [{ value: 'left', displayValue: '<span class="property-icon property-align-left" title="Align left"></span>'}, { value: 'center', displayValue: '<span class="property-icon property-align-center" title="Align center"></span>'}, { value: 'right', displayValue: '<span class="property-icon property-align-right" title="Align right"></span>'}],
+			  			changeProperty: {
+							caption: 'Text Align',
+							selector: '.liveUpdate-textColor',
+							property: 'text-align',
+							transitionable: false
+			  			}
+			  		}
+		  		]
+			]
+		},
+        {
+            caption: 'Style',
+            properties: [
+                [
+                    {
+                        caption: 'Background',
+                        name: 'backgroundColor',
+                        proptype: 'background-color',
+                        type: 'colorpicker',
+                        value: function (item, name) {
+                            return item.backgroundColor;
+                        },
+                        liveUpdate: 'svg-fill',
+                        changeProperty: {
+                            caption: 'Background color',
+                            selector: '.changeProperty-backgroundColor',
+                            property: 'background-color',
+                            transitionable: true
+                        }
+                    }
+                ],
+                [
+                    prx.commonproperties.borderWidth, 
+                    {
+	                    caption: false,
+	                    name: 'borderColor',
+	                    proptype: 'border-color',
+	                    type: 'colorpicker',
+	                    value: function (item, name) {
+	                        return item.borderColor;
+	                    },
+	                    liveUpdate: 'svg-stroke',
+	                    changeProperty: {
+	                        caption: 'Border color',
+	                        selector: '.changeProperty-borderColor',
+	                        property: 'border-top-color,border-bottom-color,border-left-color,border-right-color',
+	                        transitionable: true
+	                    }
+	                }
+                ],
+                [
+					{
+						caption: 'Border join type'
+						,name: 'joinType'
+						,proptype: 'join-type'
+						,type: 'select'
+						,value: function(item,name,index) {
+							if(item.joinType === undefined) { return 'round';}
+							return item.joinType;
+						}
+						,values: [
+							{value: 'round',displayValue: 'Round'},
+							{value: 'bevel',displayValue: 'Bevel'},
+							{value: 'miter',displayValue: 'Miter'}
+					    ]
+						,changeProperty: {  
+							caption: 'Border join type',
+							rerender: true,
+							changeable: false
+						}  						
+					}
+                ]
+            ]
+        },
+	  	{
+  		   	caption: 'Type',
+			properties: [
+     			[
+     			 	{
+						caption: false,
+						proptype: 'shape-type',
+						name: 'typeName',
+						type: 'radio',
+						value: function(item, name) {
+							return item.typeName;
+						},
+						values: [
+							{value: 'oval',displayValue: '<span class="property-icon property-shape-oval" title="Oval"></span>'},
+							{value: 'rectangle',displayValue: '<span class="property-icon property-shape-rectangle" title="Rectangle"></span>'},
+							{value: 'triangle',displayValue: '<span class="property-icon property-shape-triangle" title="Triangle"></span>'},
+							{value: 'rhombus',displayValue: '<span class="property-icon property-shape-rhombus" title="Rhombus"></span>'},
+							{value: 'trapezoid',displayValue: '<span class="property-icon property-shape-trapezoid" title="Trapezoid"></span>'},
+							{value: 'parallelogram',displayValue: '<span class="property-icon property-shape-parallelogram" title="Parallellogram"></span>'},
+							{value: 'polygon',displayValue: '<span class="property-icon property-shape-polygon" title="Polygon"></span>'},
+							{value: 'star',displayValue: '<span class="property-icon property-shape-star" title="Star"></span>'}
+						],
+						onChange: function (item, name) {
+							if(item.typeName == 'polygon' || item.typeName == 'star') { 
+								$('#property-numOfNodes').show();
+							}
+							else { $('#property-numOfNodes').hide();}
+							
+							if(item.typeName == 'star') { $('#property-spikeDepth').show();}
+							else { $('#property-spikeDepth').hide();}
+							
+							if(item.typeName == 'parallelogram') { 
+								$('#property-skew').show();
+							}
+							else { $('#property-skew').hide();}
+							
+							if(item.typeName == 'trapezoid') { 
+								$('#property-baseWidth').show();
+							}
+							else { $('#property-baseWidth').hide();}
+						},
+						changeProperty: {
+							caption: 'Shape type',
+							transitionable: false
+						}
+					}
+     			]
+     		]
+  	   },
+  	   {
+  			caption: 'Dimensions',
+  			properties: [
+				[
+      			 	{	
+						caption: 'Number of Nodes',
+						name: 'numOfNodes',
+						proptype: 'number-of-nodes',
+						type: 'slider-input', 
+		                values: { min: 4, max: 50, step: 1 },
+						value: function(item,name) { 
+							return item.numOfNodes; 
+						},
+						hiddenByDefault: function (item, name) {
+							return !(item.typeName == 'star' || item.typeName == 'polygon');
+						},
+						changeProperty: {
+					 		caption: 'Shape\'s number of nodes',
+					 		rerender: true
+					 	}
+					},
+					{	
+						caption: 'Depth',
+						name: 'spikeDepth',
+						proptype: 'star-spike-depth',
+						type: 'slider-input', 
+		                values: { min: 2, max: 10, step: 1 },
+						value: function(item,name) { 
+							if(item.spikeDepth < 2) { item.spikeDepth = 2;}
+							else if(item.spikeDepth > 10) { item.spikeDepth = 10;}
+							return item.spikeDepth; 
+						},
+						hiddenByDefault: function (item, name) {
+							return item.typeName != 'star';
+						},
+						onChange: function (item, name) {
+							if(item.spikeDepth < 2) { item.spikeDepth = 2; return item;}
+							else if(item.spikeDepth > 10) { item.spikeDepth = 10; return item;}								 
+						},
+						changeProperty: {
+					 		caption: 'Star Spike Depth',
+					 		rerender: true
+					 	}
+					}
+      			],
+      			[
+					{	
+						caption: 'Skew',
+						name: 'skew',
+						proptype: 'paralellogram-skew',
+						type: 'slider-input', 
+		                values: { min: 0, max: 90, step: 10 },
+						value: function(item,name) {
+							return item.skew; 
+						},
+						hiddenByDefault: function (item, name) {
+							return item.typeName != 'parallelogram';
+						},
+						changeProperty: {
+					 		caption: 'Parallelogram Skew Intensity',
+					 		rerender: true
+					 	}
+					}
+      			],
+      			[
+					{	
+						caption: 'Top Base Percentage',
+						name: 'baseWidth',
+						proptype: 'trapezoid-base-width',
+						type: 'slider-input', 
+						values: { min: 2, max: 100, step: 2 },
+						value: function(item,name) {
+							return item.baseWidth; 
+						},
+						hiddenByDefault: function (item, name) {
+							return item.typeName != 'trapezoid';
+						},
+						changeProperty: {
+					 		caption: 'Trapezoid Top Base Width',
+					 		rerender: true
+					 	}
+					}
+      			]
+  	      	]
+  	   }
+	]
+
+}
 
 /***** SPECIAL COMPONENTS *****/
 
@@ -119,7 +446,7 @@ prx.types.symbol = {
 			if(typeof(item.propagateevents) == "undefined") { item.propagateevents = false; }
 
 
-			cReturn='<div id="' + _id + '" class="box type-symbol '+((item.propagateevents && item.scroll == '') ? 'type-symbol-transparent' : '')+'" data-symbol-id="'+item.symbolid+'" '+dataState+' style="position: absolute;"><div id="'+_id+'-inner" style="position: absolute; overflow: hidden !important; height: 100%; width: 100%;"><div id="' + _id + '-scroll" class="symbol-scroll" style="width: '+_symbol_width+'; height: '+_symbol_height+'; position: absolute; overflow: hidden; background-color: '+prx.utils.getColor(_bg)+';">' + prx.stc.containers.render(item,containerid,stateindex) + '</div></div></div>';
+			cReturn='<div id="' + _id + '" class="box type-symbol '+((item.propagateevents && (item.scroll == '' || item.scroll == 'none')) ? 'type-symbol-transparent' : '')+'" data-symbol-id="'+item.symbolid+'" '+dataState+' style="position: absolute;"><div id="'+_id+'-inner" style="position: absolute; overflow: hidden !important; height: 100%; width: 100%;"><div id="' + _id + '-scroll" class="symbol-scroll" style="width: '+_symbol_width+'; height: '+_symbol_height+'; position: absolute; overflow: hidden; background-color: '+prx.utils.getColor(_bg)+';">' + prx.stc.containers.render(item,containerid,stateindex) + '</div></div></div>';
 		} else {
 			_appenditem = false;
 			if(prx.editor) {
@@ -491,6 +818,7 @@ prx.types.text = {
 		      				prx.items.update(item);
 		      				var $temp = $('<span>'+item.text+ '&nbsp;' +'</span>')
 							    .css({
+							        'display': 'inline-block',
 							    	'font-size': $('#'+item.id+' [data-editableproperty="text"]').css('font-size'),
 							    	'font-family': $('#'+item.id+' [data-editableproperty="text"]').css('font-family'),
 							    	'line-height': $('#'+item.id+' [data-editableproperty="text"]').css('line-height'),
@@ -533,6 +861,7 @@ prx.types.text = {
 		      				prx.items.update(item);
 		      				var $temp = $('<span>'+item.text+ '&nbsp;' +'</span>')
 							    .css({
+							        'display': 'inline-block',
 							    	'font-size': $('#'+item.id+' [data-editableproperty="text"]').css('font-size'),
 							    	'font-family': $('#'+item.id+' [data-editableproperty="text"]').css('font-family'),
 							    	'line-height': parseInt(item.textSize*1.231) + 'px', //$('#'+item.id+' [data-editableproperty="text"]').css('line-height'),
@@ -555,7 +884,10 @@ prx.types.text = {
 
 							$temp.remove();
 							prx.items.update(item);
-				            prx.properties.popup.show();
+
+				            $('#p-'+item.id+'-lineHeight').val(prx.data.items[prx.iSelectedIndex].lineHeight)
+
+				            //prx.properties.popup.show();
 		      			//}
 		      			}
 		      		,changeProperty: {
@@ -595,6 +927,7 @@ prx.types.text = {
 		      				prx.items.update(item);
 		      				var $temp = $('<span>'+item.text+ '&nbsp;' +'</span>')
 							    .css({
+							        'display': 'inline-block',
 							    	'font-size': $('#'+item.id+' [data-editableproperty="text"]').css('font-size'),
 							    	'font-family': $('#'+item.id+' [data-editableproperty="text"]').css('font-family'),
 							    	'line-height': $('#'+item.id+' [data-editableproperty="text"]').css('line-height'),
@@ -606,6 +939,7 @@ prx.types.text = {
 							        marginLeft: '5px'
 							    })
 							    .appendTo('body')
+
 
 							// no provision for dynamic properties
 
@@ -641,7 +975,37 @@ prx.types.text = {
   						selector: '.liveUpdate-lineHeight',
   						property: 'line-height',
   						transitionable: false
-  					 }
+  					 },
+				    onChange: function(item) {
+					    if(item.autoResize) {
+						    prx.items.update(item);
+						    var $temp = $('<span>'+item.text+ '&nbsp;' +'</span>')
+							    .css({
+								    'display': 'inline-block',
+								    'font-size': $('#'+item.id+' [data-editableproperty="text"]').css('font-size'),
+								    'font-family': $('#'+item.id+' [data-editableproperty="text"]').css('font-family'),
+								    'line-height': $('#'+item.id+' [data-editableproperty="text"]').css('line-height'),
+								    'text-decoration': $('#'+item.id+' [data-editableproperty="text"]').css('text-decoration'),
+								    'font-weight': $('#'+item.id+' [data-editableproperty="text"]').css('font-weight'),
+								    'font-style': $('#'+item.id+' [data-editableproperty="text"]').css('font-style'),
+								    width: 'auto',
+								    height: 'auto',
+								    marginLeft: '5px'
+							    })
+							    .appendTo('body')
+
+
+						    // no provision for dynamic properties
+
+						    prx.data.items[prx.iSelectedIndex].wtype = "fixed";
+						    prx.data.items[prx.iSelectedIndex].width = $temp.width();
+						    prx.data.items[prx.iSelectedIndex].htype = "fixed";
+						    prx.data.items[prx.iSelectedIndex].height = $temp.height();
+
+						    $temp.remove();
+						    prx.items.update(item);
+					    }
+				    }
   				}
 		  		],
 		  		[
@@ -673,6 +1037,7 @@ prx.types.text = {
 								prx.items.update(item);
 								var $temp = $('<span>'+item.text+ '&nbsp;' +'</span>')
 									.css({
+										'display': 'inline-block',
 										'font-size': $('#'+item.id+' [data-editableproperty="text"]').css('font-size'),
 										'font-family': $('#'+item.id+' [data-editableproperty="text"]').css('font-family'),
 										'line-height': $('#'+item.id+' [data-editableproperty="text"]').css('line-height'),
@@ -723,6 +1088,7 @@ prx.types.text = {
 				      			if(item.autoResize) {
 				      				var $temp = $('<span>'+item.text+ '&nbsp;' +'</span>')
 									    .css({
+									        'display': 'inline-block',
 									    	'font-size': $('#'+item.id+' [data-editableproperty="text"]').css('font-size'),
 									    	'font-family': $('#'+item.id+' [data-editableproperty="text"]').css('font-family'),
 									    	'line-height': $('#'+item.id+' [data-editableproperty="text"]').css('line-height'),
@@ -1905,13 +2271,13 @@ prx.types.video = {
 		}
 		cR += '</div>';
 		return cR;
-	}//After Display:: If YouTube Video save to prx.actions._players
+	}
 	,afterDisplay: function (item,containerid) { 
 		if(!prx.editor){
 			var _id = (!containerid) ? item.id : containerid+'-'+item.id;
-			if(item.videoType=="youtube"){	
-				prx.actions._players[_id+'-youtube']=prx.actions.createVideo(_id+'-youtube');
-	}
+			if(item.videoType=="youtube"){
+				prx.youtube.createVideo(_id+'-youtube');
+			}
 		}
 	}
 //if not editor new youtube save to array prx.actions.players
@@ -1974,9 +2340,12 @@ prx.types.video = {
                     , onChange: function (item) {
 
                         if (item.videoType == 'youtube') {
-                            var result = item.youtubeid.match("v=([a-zA-Z0-9]+)&?");
+                            //var result = item.youtubeid.match("v=([a-zA-Z0-9]+)&?");
+                            //Youtube regex: credits to http://stackoverflow.com/questions/2964678/jquery-youtube-url-validation-with-regex
+                            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+                            var result = (item.youtubeid.match(p)) ? RegExp.$1 : false;
                             if (result) {
-                                item.youtubeid = result[1]
+                                item.youtubeid = result;
                                 return item;
                             }
                         }
@@ -2906,7 +3275,7 @@ prx.types.generic_onoffswitch = {
 	        	caption: 'Border Radius (px)',
 	        	name: 'borderRadius',
 	        	proptype: 'border-radius',
-	        	type: 'slider-select', value: function(item,name) { return item.borderRadius; },
+	        	type: 'combo-select', value: function(item,name) { return item.borderRadius; },
 	        	values: { min: 0, max: 50, step: 1 }
 	        },
       		{
@@ -2922,7 +3291,7 @@ prx.types.generic_onoffswitch = {
 	        	caption: 'Switch size',
 	        	name: 'switchSize',
 	        	proptype: 'switch-size',
-	        	type: 'slider-select', value: function(item,name) { return item.switchSize; },
+	        	type: 'combo-select', value: function(item,name) { return item.switchSize; },
 	        	values: { min: 5, max: 60, step: 1 }
 	        }
       		,
@@ -3025,6 +3394,33 @@ prx.types.generic_onoffswitch = {
 
 
 /************************************* COMPONENTS (OBJECTS) *************************************/
+
+prx.components.shapes = {
+	name: 'shapes'
+	,type: 'shapes'
+	,lib: _library
+	,caption: 'Shapes'
+	,icon: '-160px 0'
+	,width: 100*prx.componentsHelper.getScale(_library)
+	,height: 100*prx.componentsHelper.getScale(_library)
+	,helper: prx.url.devices+'/common/shapes/helper.png'
+	,textFont: 'sans-serif,Helvetica Neue,Arial'
+	,textSize: 16*prx.componentsHelper.getScale(_library)
+	,textColor:  '#383838'
+	,textProperties: []
+	,textAlign: 'center'
+	,text: ''
+	,backgroundColor: 'C6C6C6'
+	,borderColor: '555555'
+	,borderWidth: 0
+	,joinType: 'round'
+	,typeName: 'star'
+	,numOfNodes: 6
+	,spikeDepth: 2
+	,skew: 30
+	,baseWidth: 50
+	,actions:[]
+}
 
 /***** BASIC COMPONENTS *****/
 
