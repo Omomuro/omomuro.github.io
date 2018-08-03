@@ -47,7 +47,8 @@
             scene.add(cube);
             camera.position.z = 3; 
             
-            var effect = new THREE.AnaglyphEffect(renderer, 100,window.innerWidth, window.innerHeight);
+            var effect = new THREE.AnaglyphEffect(renderer, window.innerWidth, window.innerHeight);
+            
             
             // game logic
             var update = function()
