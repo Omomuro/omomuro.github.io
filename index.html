@@ -20,16 +20,24 @@
             z-index: -9999;
         }
 
+        div.fixed {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 90px;
+            border: 1px solid #ffffff;
+        }
+
     </style>
 
 </head>
 
 <body>
     <canvas></canvas>
-    <div>
-      <font color="red">some content that is in front of the canvas</font>
+    <div class="fixed">
+        <font color="red"><a href="https://xsxraw.myshopify.com/password">Link to shop</a></font>
     </div>
-    
+
     <script src="js/three.js"></script>
     <script src="js/AnaglyphEffect.js"></script>
 
